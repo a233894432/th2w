@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 node_modules/
 .vscode/
 
+=======
+>>>>>>> 355f7edcca309f9905bd897c73a5b64f0f8dd371
 # Logs
 logs
 *.log
@@ -32,7 +35,7 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (https://nodejs.org/api/addons.html)
+# Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
@@ -51,3 +54,13 @@ typings/
 # Optional REPL history
 .node_repl_history
 .git/
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
