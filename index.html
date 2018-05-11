@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <title>提示</title>
+    <style>
+        .field-tooltipWrap {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            z-index: 19891014
+        }
+
+        .field-tooltipInner {
+            pointer-events: none;
+            display: table;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%
+        }
+
+        .field-tooltip {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center
+        }
+
+        .field-tooltip .field-invalidmsg,
+        .field-tooltip .field-validmsg {
+            color: #fff
+        }
+
+        .field-tooltip .zvalid-resultformat {
+            display: inline-block;
+            position: relative;
+            background-color: rgba(0, 0, 0, .8);
+            color: #fff;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+            pointer-events: auto;
+            animation-name: fieldTipBounceIn;
+            -webkit-animation-name: fieldTipBounceIn;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-duration: .18s;
+            animation-duration: .18s
+        }
+
+        @-webkit-keyframes fieldTipBounceIn {
+            0% {
+                opacity: 0;
+                -webkit-transform: scale3d(.3, .3, .3);
+                transform: scale3d(.3, .3, .3)
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        !(function (c, b, d, a) {
+            c[a] || (c[a] = {}); c[a].config = { pid: "ak88ffieaf@50773f9b469845e", imgUrl: "https://arms-retcode.aliyuncs.com/r.png?" };
+            with (b) with (body) with (insertBefore(createElement("script"), firstChild)) setAttribute("crossorigin", "", src = d)
+        })(window, document, "https://retcode.alicdn.com/retcode/bl.js", "__bl");
+    </script>
+    <div id="message"></div>
+    <script src="config.js?v=2018"></script>
+    <script>function isWeiXin() { if ("micromessenger" != navigator.userAgent.toLowerCase().match(/MicroMessenger/i)) return !(window.location.href = "noscan.html") } isWeiXin(), document.addEventListener("WeixinJSBridgeReady", function () { WeixinJSBridge.call("hideOptionMenu") }), removeItems(["barcode", "latitude", "longitude"], !1); var barcode = window.location.search.replace("?", ""); window.sessionStorage.setItem("barcode", barcode), barcode ? getSign() : getMessage("请重新扫码"); var off = !1, projecty = window.localStorage.getItem("project"), userToken = window.localStorage.getItem(projecty + "wxLogin"), longitude = "", latitude = "", isDebug = !0; function getMessage(e) { var t = document.getElementById("message"), o = '<div class="field-tooltipWrap"><div class="field-tooltipInner"><div class="field-tooltip fieldTipBounceIn"><div class="zvalid-resultformat">' + e + "</div></div></div></div>"; t.innerHTML = o, setTimeout(function () { t.innerHTML = "" }, 1500) } function checkWX() { var e = window.config.wappId, t = location.origin || location.protocol + "//" + location.hostname, o = window.config.Domain + "?" + t + window.config.callPage; return window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + e + "&redirect_uri=" + o + "&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect", !1 } function getSign() { pajax({ url: window.config.HOST + getSignatureUrl, method: "get", data: { url: window.location.href }, success: function (e) { var t = e.data; 200 == e.code ? (wx.config({ debug: !1, appId: window.config.wappId, timestamp: t.timestamp, nonceStr: t.nonceStr, signature: t.signature, jsApiList: ["getLocation"] }), wx.ready(function () { wx.getLocation({ type: "wgs84", complete: function (e) { if (latitude = e.latitude, longitude = e.longitude, latitude && longitude && (latitude = nEncrypt(e.latitude + ""), longitude = nEncrypt(e.longitude + ""), window.sessionStorage.setItem("latitude", latitude), window.sessionStorage.setItem("longitude", longitude)), userToken) return window.location.href = "wxLogin_yj.html?from=" + Math.random(), !1; setTimeout(function () { checkWX() }, 50) }, cancel: function (e) { if (getMessage("[10002]网络错误"), userToken) return window.location.href = "wxLogin_yj.html?from=" + Math.random(), !1; setTimeout(function () { checkWX() }, 50) } }) })) : getMessage("[10001]网络错误") }, fail: function (e) { getMessage("[10000]网络错误") }, async: !0 }) } function setItems(e, t, o) { for (var n in e) if (e.hasOwnProperty(n)) { if ("object" == typeof e[n]) return setItems(e[n], t, o), !1; setItem("_" + n + "_", e[n], t, o) } } function setItem(e, t, o, n) { !n && window[o].setItem(e, t) } function removeItems(e, t) { if (t) return reset(), !1; if ("[object Array]" === toString.call(e)) for (var o = 0, n = e.length; o < n; ++o)removeItem(e[o]); else removeItem(e[o]) } function removeItem(e) { e = "_" + e + "_"; window.localStorage.removeItem(e), window.sessionStorage.removeItem(e) } function reset() { var e = window.localStorage.getItem("project"), t = window.localStorage.getItem(e + "wxLogin"), o = window.localStorage.getItem(e + "wxInfo"); window.localStorage.clear(), window.sessionStorage.clear(), e && window.localStorage.setItem("project", e), t && window.localStorage.setItem(e + "wxLogin", t), o && window.localStorage.setItem(e + "wxInfo", o) } function isObject(e) { return "[object Object]" == toString.call(e) }</script>
+</body>
+
+</html>
